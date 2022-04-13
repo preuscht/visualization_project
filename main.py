@@ -1,11 +1,7 @@
 import streamlit as st
 import altair as alt
-import numpy as np
 import pandas as pd
-from vega_datasets import data as vega_datasets
-from streamlit_agraph import agraph, Node, Edge, Config,TripleStore
-from sklearn import preprocessing
-from altair import datum
+from streamlit_agraph import Config,TripleStore
 
 class crypto_dashboard:
     def __init__(self):
