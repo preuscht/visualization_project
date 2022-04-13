@@ -1,7 +1,7 @@
 import streamlit as st
 import altair as alt
 import pandas as pd
-from streamlit_agraph import Config,TripleStore
+
 
 class crypto_dashboard:
     def __init__(self):
@@ -191,39 +191,6 @@ class crypto_dashboard:
             selection
         )
 
-    def buyers_to_sellers(self):
-        data = self.all_data[['from_address', 'to_address', 'eth_value']].groupby(['from_address', 'to_address'], as_index=False).count()
-        data = data.sort_values(ascending=False, by='eth_value').head(500)
-
-        self.store = TripleStore()
-        for index, row in data.iterrows():
-            self.store.add_triple(row['from_address'], row['eth_value'], row['to_address'])
-        #     nodes.append(Node(id=row['from_address'],
-        #                       size=4,
-        #                       label=row['token']))
-        # for index, row in data.iterrows():
-        #     nodes.append(Node(id=row['to_address'],
-        #                       size=4,
-        #                       label=row['token']))
-        #
-        # for index, row in data.iterrows():
-        #     edges.append(Edge(source=row['from_address'],
-        #                       label=row['token'],
-        #                       target=row['to_address'],
-        #                       type="CURVE_SMOOTH")
-        #                  )  # includes **kwargs
-
-        self.config = Config(width=2300,
-                        height=1200,
-                        gravity = 2000,
-                        directed=True,
-                        nodeHighlightBehavior=True,
-                        highlightColor="#F7A7A6",  # or "blue"
-                        collapsible=True,
-                        node={'labelProperty': 'label', 'renderLabel': False},
-                        link={'labelProperty': 'label', 'renderLabel': False}
-                        # **kwargs e.g. node_size=1000 or node_color="blue"
-                        )
     def streamlit_app(self):
         st.set_page_config(layout="wide")
         st.title('Analysis of Popular NFTs')
