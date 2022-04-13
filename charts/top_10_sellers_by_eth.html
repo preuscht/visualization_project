@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-bffe04e868dc25dd966f1edb964ec740"}, "mark": "bar", "encoding": {"x": {"field": "from_address", "type": "ordinal"}, "y": {"field": "eth_value", "type": "quantitative"}}, "height": 1000, "width": 1000, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-bffe04e868dc25dd966f1edb964ec740": [{"from_address": " 0x03911fecabd6b4809c88e2e6eb856ec932b2ee3e", "eth_value": 4200.0}, {"from_address": " 0x03911fecabd6b4809c88e2e6eb856ec932b2ee3e", "eth_value": 800.0}, {"from_address": " 0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459", "eth_value": 750.0}, {"from_address": " 0x9e199d8a3a39c9892b1c3ae348a382662dcbaa12", "eth_value": 650.0}, {"from_address": " 0x1da5331994e781ab0e2af9f85bfce2037a514170", "eth_value": 550.0}, {"from_address": " 0x54d7f921785ebe46010d83c73712e80dfaff1e81", "eth_value": 480.0}, {"from_address": " 0x483ec3215a38908459914002aae0b76098768ef6", "eth_value": 461.0}, {"from_address": " 0x6611fe71c233e4e7510b2795c242c9a57790b376", "eth_value": 450.0}, {"from_address": " 0xcf74e42266de87aa1a3dfe1e1c5f46db0ac752b2", "eth_value": 400.0}, {"from_address": " 0x0cea5bd314d5f476f8b1613af143a922844c4ca6", "eth_value": 400.0}, {"from_address": " 0x78f0269f5b1ca914c8c58993f41181f89e212b27", "eth_value": 400.0}, {"from_address": " 0x087173c12ec250a105aaf7cdc57d36958ee8c27d", "eth_value": 380.0}, {"from_address": " 0xef466e96326bd8cc34b9aabbf2b2ef82d603e6ad", "eth_value": 369.0}, {"from_address": " 0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459", "eth_value": 360.0}, {"from_address": " 0x1008b08f8bbf1cd933dd3948c94bd238092d189b", "eth_value": 325.0}, {"from_address": " 0x78f0269f5b1ca914c8c58993f41181f89e212b27", "eth_value": 305.0}, {"from_address": " 0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459", "eth_value": 300.0}, {"from_address": " 0xb4496906d6ea2685e7a46a14baefae9fe3bf0d2f", "eth_value": 277.0}, {"from_address": " 0x0e44370ac1ffae7655bc810f5af038444ba821cb", "eth_value": 240.0}, {"from_address": " 0x8321795bdace7428d4fadfa30c2ee8e727e491e5", "eth_value": 215.0}, {"from_address": " 0xf3cad40f7f7b43ae2a4226a8c53420569458710c", "eth_value": 200.0}, {"from_address": " 0xe8723d26ad5f7ff4ea8902d235f0a8f8b8802f6d", "eth_value": 189.99}, {"from_address": " 0xef6d69922bc2d038cb508086846524f8011c4a74", "eth_value": 175.0}, {"from_address": " 0x0b88fd87884080bd6d93d341fcca0eea76b03e75", "eth_value": 169.0}, {"from_address": " 0xb268f20c03c39f00425db32c424fd5272220496e", "eth_value": 165.0}, {"from_address": " 0xcc7c335f3365ae3f7e4e8c9535dc92780a4add9d", "eth_value": 155.0}, {"from_address": " 0x6611fe71c233e4e7510b2795c242c9a57790b376", "eth_value": 150.0}, {"from_address": " 0x6611fe71c233e4e7510b2795c242c9a57790b376", "eth_value": 150.0}, {"from_address": " 0xc480fb0ebea2591470f571436926785be5ebcd22", "eth_value": 150.0}, {"from_address": " 0xc0548825bd34b96448b487ed7028cf6b532228f9", "eth_value": 145.0}, {"from_address": " 0x54d7f921785ebe46010d83c73712e80dfaff1e81", "eth_value": 145.0}, {"from_address": " 0xd4fa6e82c77716fa1ef7f5defc5fd6eeefbd3bff", "eth_value": 138.0}, {"from_address": " 0x50dd57f50a17d57304e7a4f262da30beb31c2e87", "eth_value": 130.0}, {"from_address": " 0xe83c750b2708320bb134796c555b80df39a3d97b", "eth_value": 130.0}, {"from_address": " 0xe83c750b2708320bb134796c555b80df39a3d97b", "eth_value": 130.0}, {"from_address": " 0xe83c750b2708320bb134796c555b80df39a3d97b", "eth_value": 130.0}, {"from_address": " 0x6611fe71c233e4e7510b2795c242c9a57790b376", "eth_value": 130.0}, {"from_address": " 0x5399a09fc5d0054fe1d0c15b2dd135fcf7cc3ade", "eth_value": 130.0}, {"from_address": " 0xbe7516aef9d60c11f9a8d870736137dbdd8a22df", "eth_value": 125.0}, {"from_address": " 0xb268f20c03c39f00425db32c424fd5272220496e", "eth_value": 125.0}, {"from_address": " 0xcffc336e6d019c1af58257a0b10bf2146a3f42a4", "eth_value": 125.0}, {"from_address": " 0xc24f574d6853f6f6a31c19d468a8c1b3f31c0e54", "eth_value": 125.0}, {"from_address": " 0xddfdcb21c935e8432a559cf689c83695b27a4177", "eth_value": 125.0}, {"from_address": " 0xc5f70b3f98293a2def729984243b6e6e2ecc8919", "eth_value": 122.0}, {"from_address": " 0x3bb0fe1d19e1f10a457cd3d26cd0db78dfdd677e", "eth_value": 120.0}, {"from_address": " 0xc352b534e8b987e036a93539fd6897f53488e56a", "eth_value": 120.0}, {"from_address": " 0xef768ef781637a7995a2b57ff77825e8abcf682d", "eth_value": 120.0}, {"from_address": " 0xb4bb4156e5e6ca5d81041f616c27dffb253b7845", "eth_value": 119.99}, {"from_address": " 0xa3cb30128532f43fe1c8a9f4c19422aa631307a9", "eth_value": 115.0}, {"from_address": " 0xc24f574d6853f6f6a31c19d468a8c1b3f31c0e54", "eth_value": 115.0}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

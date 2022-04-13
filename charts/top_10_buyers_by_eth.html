@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-2f2fbb00acb13d8d2ac04106cd767350"}, "mark": "bar", "encoding": {"x": {"field": "to_address", "type": "ordinal"}, "y": {"field": "eth_value", "type": "quantitative"}}, "height": 1000, "width": 1000, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-2f2fbb00acb13d8d2ac04106cd767350": [{"to_address": " 0xf4b4a58974524e183c275f3c6ea895bc2368e738", "eth_value": 4200.0}, {"to_address": " 0x99b57c09f37a3657e2215afd59f7b4de98bce3ff", "eth_value": 800.0}, {"to_address": " 0x49705967e4a9e3688a393e88eea088562c56ee1f", "eth_value": 750.0}, {"to_address": " 0xf476cd75be8fdd197ae0b466a2ec2ae44da41897", "eth_value": 650.0}, {"to_address": " 0x56178626332fc530561535eeaa914b863aa455f2", "eth_value": 550.0}, {"to_address": " 0xab61cc776cc19af7e99d3ba4539435311fa74e8a", "eth_value": 480.0}, {"to_address": " 0xf8cc874fe4696131725018138fc4bb44866433e0", "eth_value": 461.0}, {"to_address": " 0xd4b5d09a7f72ac7ebc1853fd2663bdd23c059b02", "eth_value": 450.0}, {"to_address": " 0x43fb99c5bc88c9cfe4d67abdae0fb0a152899702", "eth_value": 400.0}, {"to_address": " 0xd387a6e4e84a6c86bd90c158c6028a58cc8ac459", "eth_value": 400.0}, {"to_address": " 0xc0548825bd34b96448b487ed7028cf6b532228f9", "eth_value": 400.0}, {"to_address": " 0xa524d8b55ffa540b2ebee1d2d72716780ff5c24c", "eth_value": 380.0}, {"to_address": " 0x4eb676e95a17ee4abe750ed09a4a0a0b9ac26653", "eth_value": 369.0}, {"to_address": " 0xc0548825bd34b96448b487ed7028cf6b532228f9", "eth_value": 360.0}, {"to_address": " 0xd6a984153acb6c9e2d788f08c2465a1358bb89a7", "eth_value": 325.0}, {"to_address": " 0xab61cc776cc19af7e99d3ba4539435311fa74e8a", "eth_value": 305.0}, {"to_address": " 0x29b1b2d083456fd07b19649f8b85f9927a29b1ab", "eth_value": 300.0}, {"to_address": " 0x7f3aff2681ae4c82dc9c755ac9fed7b3429c047e", "eth_value": 277.0}, {"to_address": " 0x3432b45b9ee95bd5c31a726b936cf2ec719a2153", "eth_value": 240.0}, {"to_address": " 0xc606bb4a465cccb880a82697dd7c35caefe9518c", "eth_value": 215.0}, {"to_address": " 0x6ec30fd91a504aad948839b985c7263888b2ad68", "eth_value": 200.0}, {"to_address": " 0x7224a1a8750d77c182d7ade10b8edcbd3aae0e2d", "eth_value": 189.99}, {"to_address": " 0x0ebd1ab9c0070e857541f9add5a909a8971d0bad", "eth_value": 175.0}, {"to_address": " 0xf4b4a58974524e183c275f3c6ea895bc2368e738", "eth_value": 169.0}, {"to_address": " 0x09d4083ffd20d21acb9118465ad7c52ac8b548f7", "eth_value": 165.0}, {"to_address": " 0x696ed7b26f4b019ceec78dc8b9140ad64a6f354b", "eth_value": 155.0}, {"to_address": " 0x696ed7b26f4b019ceec78dc8b9140ad64a6f354b", "eth_value": 150.0}, {"to_address": " 0x18ee9cebca35d323068e5edc5b41ffca11d605b9", "eth_value": 150.0}, {"to_address": " 0xba19ba5233b49794c33f01654e99a60e579e6f29", "eth_value": 150.0}, {"to_address": " 0x51636d9efbfb79631824dd6107d54f2dcf548359", "eth_value": 145.0}, {"to_address": " 0xc0548825bd34b96448b487ed7028cf6b532228f9", "eth_value": 145.0}, {"to_address": " 0x6ec30fd91a504aad948839b985c7263888b2ad68", "eth_value": 138.0}, {"to_address": " 0x33b17a8d3578d558731ba60b6ba8e5f38a0bfa1d", "eth_value": 130.0}, {"to_address": " 0xb1adceddb2941033a090dd166a462fe1c2029484", "eth_value": 130.0}, {"to_address": " 0xb1adceddb2941033a090dd166a462fe1c2029484", "eth_value": 130.0}, {"to_address": " 0xb1adceddb2941033a090dd166a462fe1c2029484", "eth_value": 130.0}, {"to_address": " 0xb70c1a3242e363b4772b83acdc10df94e6c3fb02", "eth_value": 130.0}, {"to_address": " 0x052564eb0fd8b340803df55def89c25c432f43f4", "eth_value": 130.0}, {"to_address": " 0x483ec3215a38908459914002aae0b76098768ef6", "eth_value": 125.0}, {"to_address": " 0xf4b4a58974524e183c275f3c6ea895bc2368e738", "eth_value": 125.0}, {"to_address": " 0x0e9aed5c7721c642a032812c2c4816f7d6cb87d7", "eth_value": 125.0}, {"to_address": " 0xee996c70e1f73ebf421861f460d7007ce5db36e8", "eth_value": 125.0}, {"to_address": " 0x024bcbcaad82e67f721799e259ca60bc7d363419", "eth_value": 125.0}, {"to_address": " 0x1d45f16967a6b5c485524e67868105e6145846e3", "eth_value": 122.0}, {"to_address": " 0x701f373df763308d96d8537822e8f9b2bae4e847", "eth_value": 120.0}, {"to_address": " 0xab61cc776cc19af7e99d3ba4539435311fa74e8a", "eth_value": 120.0}, {"to_address": " 0x51636d9efbfb79631824dd6107d54f2dcf548359", "eth_value": 120.0}, {"to_address": " 0x0465f7dee00af5604e7fda7fa0395208122a41b4", "eth_value": 119.99}, {"to_address": " 0xf4b4a58974524e183c275f3c6ea895bc2368e738", "eth_value": 115.0}, {"to_address": " 0x6336fbba58a55ee3cfc509047449176979ef044b", "eth_value": 115.0}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
