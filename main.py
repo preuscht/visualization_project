@@ -79,7 +79,7 @@ class crypto_dashboard:
             .mark_area()\
             .encode(
                 alt.X('blk_timestamp:O', axis=None),
-                alt.Y('median(eth_value):Q', scale=alt.Scale(domain=(0, 10),clamp=True)),
+                alt.Y('median(eth_value):Q', scale=alt.Scale(domain=(0, 20),clamp=True)),
                 color='token:N') \
             .properties(width=1200, height=600)\
             .transform_filter(self.selection)

@@ -14,7 +14,7 @@
   <div id="vis"></div>
   <script>
     (function(vegaEmbed) {
-      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "empty"}, "mark": "area", "encoding": {"color": {"field": "token", "type": "nominal"}, "x": {"axis": null, "field": "blk_timestamp", "type": "ordinal"}, "y": {"aggregate": "median", "field": "eth_value", "scale": {"clamp": true, "domain": [0, 10]}, "type": "quantitative"}}, "height": 600, "title": "Time Series of Median NFT transactions Size in ETH", "transform": [{"filter": {"selection": "selector005"}}], "width": 1200, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"empty": [{}]}};
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "empty"}, "mark": "area", "encoding": {"color": {"field": "token", "type": "nominal"}, "x": {"axis": null, "field": "blk_timestamp", "type": "ordinal"}, "y": {"aggregate": "median", "field": "eth_value", "scale": {"clamp": true, "domain": [0, 20]}, "type": "quantitative"}}, "height": 600, "title": "Time Series of Median NFT transactions Size in ETH", "transform": [{"filter": {"selection": "selector002"}}], "width": 1200, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"empty": [{}]}};
       var embedOpt = {"mode": "vega-lite"};
 
       function showError(el, error){
