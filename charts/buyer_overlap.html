@@ -14,7 +14,7 @@
   <div id="vis"></div>
   <script>
     (function(vegaEmbed) {
-      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "empty"}, "mark": "bar", "encoding": {"color": {"field": "token", "type": "nominal"}, "x": {"field": "sum_eth", "type": "quantitative"}, "y": {"field": "to_address", "sort": "-x", "type": "nominal"}}, "height": 1000, "transform": [{"aggregate": [{"op": "sum", "field": "eth_value", "as": "sum_eth"}], "groupby": ["to_address", "token"]}, {"window": [{"op": "rank", "field": "sum_eth", "as": "rank"}], "sort": [{"field": "sum_eth", "order": "descending"}]}, {"filter": {"selection": "selector008"}}, {"filter": "(datum.rank < 50)"}], "width": 1000, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"empty": [{}]}};
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "empty"}, "mark": "bar", "encoding": {"color": {"field": "token", "type": "nominal"}, "x": {"field": "sum_eth", "type": "quantitative"}, "y": {"field": "to_address", "sort": "-x", "type": "nominal"}}, "height": 1000, "title": "Top 50 Buyers", "transform": [{"aggregate": [{"op": "sum", "field": "eth_value", "as": "sum_eth"}], "groupby": ["to_address", "token"]}, {"window": [{"op": "rank", "field": "sum_eth", "as": "rank"}], "sort": [{"field": "sum_eth", "order": "descending"}]}, {"filter": {"selection": "selector002"}}, {"filter": "(datum.rank < 50)"}], "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"empty": [{}]}};
       var embedOpt = {"mode": "vega-lite"};
 
       function showError(el, error){

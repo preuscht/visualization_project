@@ -55,9 +55,6 @@ class crypto_dashboard:
         self.selected_data = self.all_data[['eth_value', 'blk_timestamp','token','from_address','to_address']].groupby(['blk_timestamp','token','from_address','to_address'], as_index=False).sum()
         min = self.selected_data['blk_timestamp'].min()
         self.selected_data['blk_timestamp'] = self.selected_data['blk_timestamp'] - min
-        self.selected_data = self.selected_data[self.selected_data['eth_value'] > 1]
-        self.selected_data = self.selected_data[self.selected_data['eth_value'] < 50]
-
         self.selection = alt.selection_multi(fields=['token'])
 
         self.top_10_b = None
@@ -69,29 +66,30 @@ class crypto_dashboard:
     def transactions_over_time(self):
         self.selection = alt.selection_multi(fields=['token'])
         self.selection_2 = alt.selection_multi(fields=['from_address'])
-        self.bubble = alt.Chart().mark_circle()\
+        self.bubble = alt.Chart(title="Total Eth Per Token (Interactive Select Bubble To Filter. Hold Shift to Select Multiple").mark_circle()\
             .encode(
             x='token:N',
-            size=alt.Size('sum(eth_value):Q', scale=alt.Scale(range=[10000, 20000]), legend=None),
+            size=alt.Size('sum(eth_value):Q', scale=alt.Scale(range=[5000, 20000]), legend=None),
             color=alt.condition(self.selection, alt.value('steelblue'), alt.value('lightgray')))\
-            .properties(width=2000, height=300)\
+            .properties(width=1200, height=600)\
             .add_selection(self.selection)
 
-        self.top_100_s_time = alt.Chart()\
+        self.top_100_s_time = alt.Chart(title="Time Series of Median NFT transactions Size in ETH") \
             .mark_area()\
             .encode(
                 alt.X('blk_timestamp:O', axis=None),
-                alt.Y('sum(eth_value):Q'),#, scale=alt.Scale(type="log")),
-                color='token:N')\
-            .properties(width=2000, height=600)\
+                alt.Y('median(eth_value):Q', scale=alt.Scale(domain=(0, 10),clamp=True)),
+                color='token:N') \
+            .properties(width=1200, height=600)\
             .transform_filter(self.selection)
+
         self.top_100_s_time.save('charts/top_100_sellers_by_eth_over_time.html')
         self.concat_graph_1 = alt.vconcat(self.bubble, self.top_100_s_time, data=self.selected_data)
 
         #data = self.all_data[['from_address', 'token', 'eth_value']].groupby(['from_address', 'token'],as_index=False).sum()
         #data = data.sort_values(ascending=False, by='eth_value').head(50)
 
-        self.seller_overlap = alt.Chart() \
+        self.seller_overlap = alt.Chart(title="Top 50 Sellers") \
             .mark_bar() \
             .transform_aggregate(
             sum_eth='sum(eth_value):Q',
@@ -104,11 +102,11 @@ class crypto_dashboard:
             .encode(x='sum_eth:Q',
                     y=alt.Y('from_address:N',sort='-x'),
                     color='token:N')\
-            .properties(width=1000, height=1000)
+            .properties(width=500, height=1000)
         #data = self.all_data[['to_address', 'token', 'eth_value']].groupby(['to_address', 'token'],as_index=False).sum()
         #data = data.sort_values(ascending=False, by='eth_value').head(50)
 
-        self.buyer_overlap = alt.Chart() \
+        self.buyer_overlap = alt.Chart(title="Top 50 Buyers") \
             .mark_bar() \
             .transform_aggregate(
             sum_eth='sum(eth_value):Q',
@@ -121,24 +119,24 @@ class crypto_dashboard:
             .encode(x='sum_eth:Q',
                     y=alt.Y('to_address:N',sort='-x'),
                     color='token:N')\
-            .properties(width=1000, height=1000)
+            .properties(width=500, height=1000)
         self.buyer_overlap.save('charts/buyer_overlap.html')
 
-        self.b2s = alt.Chart().transform_window(
-            index='count()'
+        self.b2s = alt.Chart(title="Web of Buyers to Sellers").transform_window(
+            count_of_transactions='count()'
         ).transform_fold(
-            ['from_address','to_address']
+            ['from_address', 'to_address']
         ).mark_line().encode(
             x='key:N',
-            y='value:Q',
+            y = alt.Y('count_of_transactions:Q', axis=None),
             color='token:N',
-            detail='eth_value:Q',
-            opacity=alt.value(0.5)
-        ).properties(width=2000, height=1000)\
+            detail='value:N',
+            opacity=alt.value(0.1)
+        ).properties(width=1200, height=2000)\
         .transform_filter(
             self.selection
         )
-
+        self.b2s.save('charts/bs.html')
         self.concat_graph_2 = alt.hconcat(self.seller_overlap,self.buyer_overlap, data=self.selected_data)
         self.seller_overlap.save('charts/seller_overlap.html')
         self.concat_graph_3 = alt.vconcat(self.concat_graph_1 ,self.concat_graph_2,self.b2s, data=self.selected_data)
@@ -196,11 +194,62 @@ class crypto_dashboard:
         st.title('Analysis of Popular NFTs')
         #st.altair_chart(self.bubble, use_container_width=True)
         st.altair_chart(self.concat_graph_3, use_container_width=True)
+        with st.sidebar:
+            st.title("Project Description")
+            with st.container():
+                st.title("Data")
+                st.markdown('The data for this project came from a paper called, "Networks of Ethereum Non-Fungible Tokens: A graph-based analysis of the ERC-721 ecosystem" ')
+                st.markdown('Link -> https://arxiv.org/abs/2110.12545')
+                st.markdown("Data -> https://github.com/epfl-scistimm/2021-ieee-blockchain")
+                st.title("Goals")
+                st.markdown("The Goal of this project was to perform basic data analysis to establish when and who were buying these popular Tokens.")
+                st.title("Tasks")
+                st.markdown("The user is using the visualization to gain knowledge of NFT transactions")
+                st.markdown("The user will interact with the graphs to see when NFTs are being sold, who is buying the NFTs, and how many are they buying.")
+                st.markdown("The user is looking for addresses that buy and sell. They are looking for peaks and they are looking for trends.")
+            st.title("Component description top to bottom")
+            with st.container():
+                st.title("Bubble Chart")
+                st.markdown("The first component is interactive and filters the charts below it for a specific token project. "
+                            "The size of the bubble is indicative of the total ETH sold. The purpose is to allow the user to "
+                            "filter the data and to provide an indication of the amount of ETH transacted.")
+            with st.container():
+                st.title("Time Series")
+                st.markdown("The second component shows a time series of transactions between the first and last block of "
+                            "the blockchain data. The purpose is to give the user a view of when each project was popular "
+                            "and the scale of the transactions taking place")
+            with st.container():
+                st.title("Top NFT Buyers and Sellers")
+                st.markdown("The third component gives a visual of the top buyers and sellers of each token. The purpose is to show if a single buyer is "
+                            "purchasing more than one and to give an indication of who the big players are in the market.")
+            with st.container():
+                st.title("Seller To Buyer Web")
+                st.markdown("The final component maps the tokens transacted from seller to buyer. The purpose is to see if the "
+                            "sellers transact with the  buyers across tokens.")
+            st.title("Final Evaluation")
+            with st.container():
+                st.title("Insight-Based Evaluation")
+                st.markdown("I chose to have the user perform an insight base Evaluation for the following reasons:")
+                st.markdown("The dashboard is built for data exploration and therefore I need to observe the user to identify what they discover.")
+                st.markdown("Holistic evaluation was needed to determine what enhancements needed to be done.")
 
+            with st.container():
+                st.title("Final Evaluation Results- Insight Gained – Quotes from the tester")
+                st.markdown("It is very easy to see when each project was released compared and the subsequent build up of value in the transactions.")
+                st.markdown("Interesting to see the concentration of transactions to few addresses.")
+                st.markdown("I wasnt able to see what was happening in the web.")
+                st.markdown("Crypto Punks and Bored Apes Yacht Club are trending up in value over time. ")
+                st.markdown("People who invested in Crypto Punks Generally did not invest in Bored Apes. However Apes invested in Punks.")
 
-# Press the green button in the gutter to run the script.
+            with st.container():
+                st.title("Findings")
+                st.markdown("Altair is a very intuitive and useful tool for building graphs and dashboards.")
+                st.markdown("Streamlit is a great way to publish Altair graphs in an understandable and intuitive way.")
+                st.markdown("The visualization did spark interesting conversations but after the final evaluation it didn’t give the deep insight that I was hoping for. ")
+                st.markdown("I would like to add aGraphical model (nodes and edges) but altair does not have one.")
+                st.markdown("This project was great and I learned a lot.")
+
 if __name__ == '__main__':
     cd = crypto_dashboard()
     cd.transactions_over_time()
     cd.streamlit_app()
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
