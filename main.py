@@ -174,6 +174,7 @@ class crypto_dashboard:
         data = self.all_data[['from_address', 'to_address', 'token', 'eth_value']].groupby(['from_address', 'to_address', 'token'],as_index=False).sum()
         data = data.sort_values(ascending=False, by='eth_value').head(1000)
         self.b2s = alt.Chart(data).transform_window(
+            sort=[{'field': 'from_address'}],
             index='count()'
         ).transform_fold(
             ['from_address','to_address']
