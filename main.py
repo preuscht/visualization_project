@@ -54,6 +54,7 @@ class crypto_dashboard:
 
         self.selected_data = self.all_data[['eth_value', 'blk_timestamp','token','from_address','to_address']].groupby(['blk_timestamp','token','from_address','to_address'], as_index=False).sum()
         min = self.selected_data['blk_timestamp'].min()
+        self.selected_data = self.selected_data[self.selected_data['eth_value'] > 1]
         self.selected_data['blk_timestamp'] = self.selected_data['blk_timestamp'] - min
         self.selection = alt.selection_multi(fields=['token'])
 
@@ -66,7 +67,7 @@ class crypto_dashboard:
     def transactions_over_time(self):
         self.selection = alt.selection_multi(fields=['token'])
         self.selection_2 = alt.selection_multi(fields=['from_address'])
-        self.bubble = alt.Chart(title="Total Eth Per Token (Interactive Select Bubble To Filter. Hold Shift to Select Multiple").mark_circle()\
+        self.bubble = alt.Chart(title="Total ETH Per Token (Interactive Select Bubble To Filter. Hold Shift to Select Multiple").mark_circle()\
             .encode(
             x='token:N',
             size=alt.Size('sum(eth_value):Q', scale=alt.Scale(range=[5000, 20000]), legend=None),
